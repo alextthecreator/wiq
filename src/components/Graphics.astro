@@ -1,0 +1,48 @@
+---
+import { media } from '../data/media';
+
+const works = [
+  { src: media.graphics.work1, alt: 'Grafika MissionOne — BANI', rotate: -2 },
+  { src: media.graphics.work2, alt: 'Przykład grafiki social media', rotate: 1.5 },
+  { src: media.graphics.work3, alt: 'Przykład identyfikacji wizualnej', rotate: -1 },
+  { src: media.graphics.work4, alt: 'Przykład postu / creative', rotate: 2 },
+  { src: media.graphics.work5, alt: 'Przykład grafiki do publikacji', rotate: -1.5 },
+];
+---
+
+<section id="portfolio" class="px-5 py-20 md:px-10 md:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="font-hand text-2xl text-accent">wizualnie</p>
+        <h2 class="font-display mt-1 text-4xl font-extrabold tracking-tight text-ink md:text-5xl">
+          Przykłady moich grafik
+        </h2>
+      </div>
+      <p class="max-w-sm text-ink-soft">
+        Kilka kadrów z projektów — od dark corporate po lekkie socialy.
+      </p>
+    </div>
+
+    <div class="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3">
+      {
+        works.map((work) => (
+          <figure
+            class="mb-5 break-inside-avoid paper-shadow overflow-hidden bg-cream p-2 transition duration-500 hover:-translate-y-1"
+            style={`transform: rotate(${work.rotate}deg)`}
+          >
+            <img
+              src={work.src}
+              alt={work.alt}
+              width="720"
+              height="900"
+              class="w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

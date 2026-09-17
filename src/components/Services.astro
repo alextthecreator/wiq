@@ -1,0 +1,51 @@
+---
+const services = [
+  { text: 'Pomagam konsekwentnie budować', strong: 'marki osobiste' },
+  { text: 'Wspieram przy kreowaniu', strong: 'identyfikacji wizualnych' },
+  { text: 'Montuję', strong: 'rolki', text2: 'i tworzę', strong2: 'grafiki', text3: 'na social media' },
+  { text: 'Uczę, jak dobrze', strong: 'korzystać z LinkedIna' },
+  { text: 'Piszę różnorodne', strong: 'materiały tekstowe', text2: 'do publikacji' },
+  { text: '', strong: 'Redaguję', text2: 'teksty i dbam o ich poprawność językową' },
+  { text: 'Zajmuję się', strong: 'tłumaczeniem tekstów anglojęzycznych' },
+];
+---
+
+<section id="uslugi" class="relative px-5 py-20 md:px-10 md:py-28">
+  <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16">
+    <div>
+      <p class="font-hand text-2xl text-accent">grafiki, rolki, słowa</p>
+      <h2 class="font-display mt-2 text-4xl font-extrabold tracking-tight text-ink md:text-5xl text-balance">
+        Czym się zajmuję?
+      </h2>
+      <p class="mt-5 max-w-md text-ink-soft leading-relaxed">
+        Od konceptu po publikację — pomagam, żeby Twoja marka brzmiała i wyglądała spójnie.
+      </p>
+    </div>
+
+    <ul class="space-y-4">
+      {
+        services.map((item) => (
+          <li class="group flex gap-4 border-b border-ink/10 pb-4">
+            <span
+              class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent transition group-hover:scale-125"
+              aria-hidden="true"
+            />
+            <p class="text-lg leading-snug text-ink md:text-xl">
+              {item.text && <>{item.text}{' '}</>}
+              <strong class="font-semibold text-ink">{item.strong}</strong>
+              {item.text2 && <>{' '}{item.text2}</>}
+              {item.strong2 && (
+                <>
+                  {' '}
+                  <strong class="font-semibold text-ink">{item.strong2}</strong>
+                </>
+              )}
+              {item.text3 && <>{' '}{item.text3}</>}
+              .
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

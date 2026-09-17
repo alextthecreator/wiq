@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import paper1 from '../assets/paper/torn-1.png';
+import { media } from '../data/media';
+---
+
+<section id="top" class="relative overflow-hidden px-5 pb-16 pt-28 md:px-10 md:pb-24 md:pt-32">
+  <div class="mx-auto grid max-w-6xl items-end gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+    <div class="relative z-10">
+      <p class="reveal font-hand text-2xl text-accent md:text-3xl">hejka!</p>
+      <h1 class="reveal reveal-delay-1 font-display mt-2 max-w-[11ch] text-[clamp(2.8rem,8vw,5.6rem)] leading-[0.92] font-extrabold tracking-tight text-ink text-balance">
+        Jestem Wiki
+      </h1>
+      <p class="reveal reveal-delay-2 mt-6 max-w-md text-lg leading-relaxed text-ink-soft md:text-xl">
+        Tworzę teksty, grafiki i rolki, które budują marki osobiste — od LinkedIna po mailingi.
+      </p>
+      <div class="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href="#uslugi"
+          class="inline-flex items-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream transition hover:bg-accent"
+        >
+          Czym się zajmuję
+        </a>
+        <a
+          href="#kontakt"
+          class="inline-flex items-center rounded-full border border-ink/20 bg-cream/70 px-6 py-3 text-sm font-semibold text-ink backdrop-blur transition hover:border-accent hover:text-accent"
+        >
+          Napisz do mnie
+        </a>
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none">
+      <div class="relative aspect-[4/5] md:aspect-[5/6]">
+        <div class="float-soft absolute top-[8%] left-[4%] z-20 w-[38%]" style="--tilt: -6deg">
+          <div class="polaroid rotate-[-6deg]">
+            <img
+              src={media.photos.wiki5}
+              alt="Wiki w czerwonej bluzce z laptopem"
+              width="420"
+              height="560"
+              class="aspect-[3/4] w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div class="absolute inset-x-[8%] top-[4%] bottom-[12%] z-10 overflow-hidden paper-shadow rotate-[1.5deg]">
+          <img
+            src={media.photos.wiki4}
+            alt="Wiktoria Zgódka przy biurku"
+            width="960"
+            height="1200"
+            class="h-full w-full object-cover object-[50%_20%]"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+
+        <div
+          class="float-soft absolute right-[-2%] bottom-[2%] z-20 w-[42%]"
+          style="--tilt: 4deg; animation-delay: -2.5s"
+        >
+          <div class="polaroid rotate-[4deg]">
+            <img
+              src={media.photos.wiki6}
+              alt="Portret Wiki w białej koszuli"
+              width="420"
+              height="560"
+              class="aspect-[3/4] w-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div class="clip-wiggle absolute top-[-2%] right-[6%] z-30 w-[46%] max-w-[220px]">
+          <div class="relative">
+            <svg
+              class="absolute -top-4 left-1/2 z-10 h-10 w-10 -translate-x-1/2 text-[#8a8f96] drop-shadow"
+              viewBox="0 0 64 64"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M22 8h20c3.3 0 6 2.7 6 6v6h-4V14c0-1.1-.9-2-2-2H22c-1.1 0-2 .9-2 2v6h-4v-6c0-3.3 2.7-6 6-6zm-8 14h36v30c0 3.3-2.7 6-6 6H20c-3.3 0-6-2.7-6-6V22zm8 8v18h4V30h-4zm10 0v18h4V30h-4zm10 0v18h4V30h-4z"
+              ></path>
+            </svg>
+            <div class="rounded-[2px] border border-black/5 bg-[#f4f1e6] px-4 pt-7 pb-4 shadow-lg">
+              <div class="space-y-1 bg-[repeating-linear-gradient(transparent,transparent_27px,#c9d6e8_28px)] pt-1">
+                <p class="font-hand text-[1.35rem] leading-[1.75rem] text-ink/90">
+                  Posty, newslettery,<br />
+                  mailingi, artykuły,<br />
+                  opisy, grafiki, rolki…
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute inset-x-0 -bottom-px h-20 md:h-28"
+    style={`--torn: url(${paper1.src});`}
+    aria-hidden="true"
+  >
+    <div class="torn-mask h-full w-full bg-paper-deep/80"></div>
+  </div>
+</section>

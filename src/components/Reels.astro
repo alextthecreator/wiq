@@ -1,0 +1,96 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import paper3 from '../assets/paper/torn-3.png';
+import { media } from '../data/media';
+
+const videosDir = path.join(process.cwd(), 'public', 'videos');
+const videoFiles = fs.existsSync(videosDir)
+  ? fs
+      .readdirSync(videosDir)
+      .filter((f) => /\.(mp4|webm|mov)$/i.test(f))
+      .sort()
+  : [];
+
+const reels = videoFiles.map((file, i) => ({
+  title: `Montaż ${String(i + 1).padStart(2, '0')}`,
+  src: `/videos/${file}`,
+}));
+---
+
+<section class="relative overflow-hidden bg-paper-deep/60 px-5 py-20 md:px-10 md:py-28">
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-14 md:h-20"
+    style={`--torn: url(${paper3.src}); transform: scaleY(-1);`}
+    aria-hidden="true"
+  >
+    <div class="torn-mask h-full w-full bg-paper"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+      <div>
+        <p class="font-hand text-2xl text-accent">ruch i montaż</p>
+        <h2 class="font-display mt-1 text-4xl font-extrabold tracking-tight text-ink md:text-5xl text-balance">
+          Przykłady moich montaży
+        </h2>
+
+        <blockquote class="mt-8 border-l-4 border-accent pl-5">
+          <p class="font-display text-2xl font-bold leading-snug text-ink md:text-3xl text-balance">
+            „Ale ja nie umiem gadać do kamery”.
+          </p>
+          <p class="mt-4 text-ink-soft leading-relaxed">
+            Umiesz. Większość osób, z jakimi pracuję, ma z tym spory problem. Ja jestem od tego, by
+            nauczyć Cię swobody. Gwarantuję atmosferę, która pozwoli Ci się otworzyć i nagrać, co
+            tylko chcesz :)
+          </p>
+        </blockquote>
+      </div>
+
+      {
+        reels.length > 0 ? (
+          <div class="grid gap-5 sm:grid-cols-2">
+            {reels.map((reel) => (
+              <figure class="paper-shadow overflow-hidden bg-ink">
+                <div class="relative aspect-[9/16] bg-ink">
+                  <video
+                    class="absolute inset-0 h-full w-full object-cover"
+                    controls
+                    playsinline
+                    preload="metadata"
+                    poster={media.photos.wiki2}
+                  >
+                    <source src={reel.src} type="video/mp4" />
+                  </video>
+                  <figcaption class="pointer-events-none absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/80 to-transparent p-4 text-sm text-cream">
+                    {reel.title}
+                  </figcaption>
+                </div>
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <div class="relative paper-shadow overflow-hidden">
+            <img
+              src={media.photos.wiki2}
+              alt="Kadry z pracy z kamerą"
+              width="960"
+              height="1200"
+              class="aspect-[4/5] w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-ink/45"></div>
+            <div class="absolute inset-0 flex flex-col items-start justify-end p-6 text-cream md:p-8">
+              <p class="font-display text-2xl font-bold md:text-3xl">Wkrótce tu wpadną rolki</p>
+              <p class="mt-2 max-w-sm text-sm text-cream/80">
+                Wrzuć pliki <code class="font-mono text-cream">.mp4</code> do folderu{' '}
+                <code class="font-mono text-cream">public/videos/</code> — pojawią się automatycznie.
+              </p>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

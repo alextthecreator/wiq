@@ -1,0 +1,32 @@
+# build
+dist/
+.vercel/
+.astro/
+
+# deps
+node_modules/
+
+# env
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/*
+!.vscode/extensions.json
+
+# Sensitive / personal media — keep locally, never commit
+public/media/
+public/videos/*
+!public/videos/.gitkeep
+
+# Raw Canva/export dumps
+public/Grafiki do pokazania/
+public/Zdjęcia Wiki/
+public/Logo/
+public/CV*.pdf
+public/ucięta*.png
+public/graphics/
+public/cv/

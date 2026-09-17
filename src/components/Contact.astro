@@ -1,0 +1,63 @@
+---
+import { media } from '../data/media';
+---
+
+<section id="kontakt" class="px-5 py-20 md:px-10 md:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="relative overflow-hidden border border-ink/10 bg-cream px-8 py-14 text-center paper-shadow md:px-16 md:py-20">
+      <p class="font-hand text-2xl text-accent md:text-3xl">daj znać</p>
+      <h2 class="font-display mx-auto mt-3 max-w-[14ch] text-4xl font-extrabold tracking-tight text-ink md:text-6xl text-balance">
+        Chcesz zobaczyć moje CV?
+      </h2>
+      <p class="mx-auto mt-5 max-w-md text-ink-soft">
+        Napisz — podeślę CV albo od razu pogadamy o Twoim projekcie.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="mailto:poczta.wiktoria.zgodka@gmail.com"
+          class="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-cream transition hover:bg-ink"
+        >
+          poczta.wiktoria.zgodka@gmail.com
+        </a>
+        <a
+          href={media.cv}
+          class="inline-flex items-center rounded-full border border-ink/20 px-7 py-3.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent"
+          download
+        >
+          Pobierz CV (PDF)
+        </a>
+      </div>
+
+      <div class="mt-12 flex flex-wrap items-center justify-between gap-8 text-sm font-medium md:justify-center">
+        <a
+          class="group inline-flex flex-col items-center gap-1 text-ink transition hover:text-accent"
+          href="https://www.linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="font-display text-lg font-bold">Dołącz do mojej</span>
+          <span class="underline decoration-accent/40 underline-offset-4 group-hover:decoration-accent">
+            sieci na LinkedIn!
+          </span>
+        </a>
+        <a
+          class="group inline-flex flex-col items-center gap-1 text-ink transition hover:text-accent"
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="font-display text-lg font-bold">Zaproś mnie</span>
+          <span class="underline decoration-accent/40 underline-offset-4 group-hover:decoration-accent">
+            na Fejsie!
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <footer class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 text-sm text-ink-soft md:flex-row">
+      <p>© {new Date().getFullYear()} CO TU PISZE — Wiktoria Zgódka</p>
+      <p>Wrocław · teksty · grafiki · rolki</p>
+    </footer>
+  </div>
+</section>

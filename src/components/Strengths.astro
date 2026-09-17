@@ -1,0 +1,43 @@
+---
+const strengths = [
+  { title: 'Znam trendy,', line: 'rozumiem memy' },
+  { title: 'Lubię ludzi', line: '' },
+  { title: 'Mam doświadczenie', line: 'w wielu branżach' },
+  { title: 'Nikogo nie udaję,', line: 'jestem szczera' },
+  { title: 'Robię to, bo to', line: 'naprawdę kocham' },
+  { title: 'Szybko odpisuję', line: '' },
+];
+---
+
+<section class="px-5 py-20 md:px-10 md:py-28">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="font-display text-4xl font-extrabold tracking-tight text-ink md:text-5xl text-balance">
+      Moje mocne strony
+    </h2>
+    <p class="mt-4 max-w-xl text-ink-soft">
+      To, co najczęściej słyszę od klientów — i to, na czym zawsze mogę polegać.
+    </p>
+
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        strengths.map((item, i) => (
+          <li
+            class="relative overflow-hidden border border-ink/10 bg-cream/70 px-6 py-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-accent/30"
+            style={`transform: rotate(${i % 2 === 0 ? -0.6 : 0.7}deg)`}
+          >
+            <span class="font-hand text-accent text-xl">{String(i + 1).padStart(2, '0')}</span>
+            <p class="font-display mt-3 text-2xl font-bold leading-tight text-ink">
+              {item.title}
+              {item.line && (
+                <>
+                  <br />
+                  {item.line}
+                </>
+              )}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
