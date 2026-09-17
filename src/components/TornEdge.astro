@@ -1,11 +1,15 @@
 ---
+import tear1 from '../assets/paper/tear-edge-1.png';
+import tear2 from '../assets/paper/tear-edge-2.png';
+
 interface Props {
   position?: 'top' | 'bottom';
+  /** Color of the paper piece (usually the section BELOW/ABOVE that "covers") */
   fill?: string;
   class?: string;
 }
-const { position = 'bottom', fill = 'currentColor', class: className = '' } = Astro.props;
-const flip = position === 'top';
+const { position = 'bottom', fill = '#eceae4', class: className = '' } = Astro.props;
+const tiles = [tear1, tear2, tear1, tear2];
 ---
 
 <div
@@ -14,30 +18,25 @@ const flip = position === 'top';
     position === 'top' ? '-top-px' : '-bottom-px',
     className,
   ]}
+  style={position === 'top' ? 'transform: scaleY(-1)' : undefined}
   aria-hidden="true"
 >
-  <svg
-    class="block h-[36px] w-full md:h-[52px]"
-    viewBox="0 0 1440 52"
-    preserveAspectRatio="none"
-    style={flip ? 'transform: scaleY(-1)' : undefined}
-  >
-    <path
-      fill={fill}
-      d="M0 26
-        C48 10 72 38 120 22
-        C150 12 165 40 210 18
-        C255 0 270 44 330 20
-        C360 8 390 42 435 16
-        C480 0 510 36 555 24
-        C600 10 630 48 690 20
-        C720 4 750 40 810 22
-        C855 8 885 46 945 18
-        C990 2 1020 38 1080 24
-        C1125 12 1140 44 1200 16
-        C1245 0 1275 40 1335 22
-        C1380 10 1410 34 1440 20
-        L1440 52 L0 52 Z"
-    />
-  </svg>
+  <div class="flex w-full" style={`color: ${fill}`}>
+    {
+      tiles.map((src) => (
+        <div
+          class="h-[42px] w-1/4 md:h-[56px]"
+          style={`
+            background-color: ${fill};
+            -webkit-mask-image: url(${src.src});
+            mask-image: url(${src.src});
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+          `}
+        />
+      ))
+    }
+  </div>
 </div>

@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  /* Canva: Cloud Bold ≈ Nunito 800; Cloud FourHand ≈ Caveat; Amicale ≈ Nunito 400; body = Krub */
+  --font-display: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-amicale: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Krub", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat", ui-serif, cursive;
 
   --color-paper: #eceae4;
@@ -48,6 +50,10 @@
 
   .font-hand {
     font-family: var(--font-hand);
+  }
+
+  .font-amicale {
+    font-family: var(--font-amicale);
   }
 
   .text-balance {
