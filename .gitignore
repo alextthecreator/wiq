@@ -30,3 +30,5 @@ public/CV*.pdf
 public/ucięta*.png
 public/graphics/
 public/cv/
+.vercel
+.env*

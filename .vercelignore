@@ -1,0 +1,12 @@
+public/media
+public/videos
+public/Grafiki do pokazania
+public/Zdjęcia Wiki
+public/Logo
+public/graphics
+public/cv
+public/CV*.pdf
+public/ucięta*.png
+dist
+.astro
+docs
