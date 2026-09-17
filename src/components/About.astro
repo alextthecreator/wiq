@@ -1,36 +1,16 @@
 ---
-import paper2 from '../assets/paper/torn-2.png';
+import TornEdge from './TornEdge.astro';
 import { media } from '../data/media';
 ---
 
-<section id="o-mnie" class="relative overflow-hidden bg-ink px-5 py-24 text-cream md:px-10 md:py-32">
-  <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-16 md:h-24"
-    style={`--torn: url(${paper2.src}); transform: scaleY(-1);`}
-    aria-hidden="true"
-  >
-    <div class="torn-mask h-full w-full bg-paper"></div>
-  </div>
+<section id="o-mnie" class="relative overflow-hidden bg-[#d9d9d9] px-5 py-28 text-ink md:px-10 md:py-36">
+  <TornEdge position="top" fill="#eceae4" />
 
-  <div class="relative z-10 mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
-    <div class="mx-auto w-full max-w-sm lg:mx-0">
-      <div class="paper-shadow overflow-hidden rotate-[-2deg] bg-cream p-3">
-        <img
-          src={media.photos.wiki1}
-          alt="Portret Wiktorii"
-          width="640"
-          height="853"
-          class="aspect-[3/4] w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-    </div>
-
+  <div class="relative z-10 mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
     <div>
-      <p class="font-hand text-2xl text-accent-soft">kilka słów</p>
-      <h2 class="font-display mt-2 text-4xl font-extrabold tracking-tight md:text-5xl">O mnie</h2>
-      <div class="mt-6 space-y-4 text-base leading-relaxed text-cream/85 md:text-lg">
+      <p class="font-hand text-2xl text-accent">kilka słów</p>
+      <h2 class="font-display mt-2 text-4xl font-extrabold tracking-tight text-ink md:text-5xl">O mnie</h2>
+      <div class="mt-6 space-y-4 text-base leading-relaxed text-ink/85 md:text-lg">
         <p>Mam na imię Wiktoria, mam 28 lat i mieszkam we Wrocławiu wraz z narzeczonym.</p>
         <p>
           Moje pomysły przelewam na fizyczny papier i elektroniczne strony odkąd skończyłam 10 lat.
@@ -40,22 +20,30 @@ import { media } from '../data/media';
           wizerunki firm z przeróżnych branż.
         </p>
         <p>
-          Poza tym <strong class="font-semibold text-cream">KOCHAM</strong> pracować z ludźmi. Mało
+          Poza tym <strong class="font-semibold text-ink">KOCHAM</strong> pracować z ludźmi. Mało
           co daje mi tak dużą satysfakcję jak to, że moi Klienci ufają mi i widzą jakość w mojej
           twórczości. Przekazując mi zlecenie możesz mieć absolutną pewność, że podejdę do niego
           poważnie, obowiązkowo, z otwartą głową i chęcią do jak najlepszego spełnienia Twoich
           oczekiwań.
         </p>
-        <p class="font-display text-2xl font-bold text-cream md:text-3xl">To co — działamy?</p>
+        <p class="font-display text-2xl font-bold text-ink md:text-3xl">To co — działamy?</p>
+      </div>
+    </div>
+
+    <div class="mx-auto w-full max-w-sm lg:mx-0">
+      <div class="paper-shadow overflow-hidden rotate-[2deg] bg-cream p-3">
+        <img
+          src={media.photos.wiki5}
+          alt="Wiki w czerwonej bluzce"
+          width="640"
+          height="853"
+          class="aspect-[3/4] w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   </div>
 
-  <div
-    class="pointer-events-none absolute inset-x-0 -bottom-px h-16 md:h-24"
-    style={`--torn: url(${paper2.src});`}
-    aria-hidden="true"
-  >
-    <div class="torn-mask h-full w-full bg-paper"></div>
-  </div>
+  <TornEdge position="bottom" fill="#eceae4" />
 </section>

@@ -1,7 +1,7 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import paper3 from '../assets/paper/torn-3.png';
+import TornEdge from './TornEdge.astro';
 import { media } from '../data/media';
 
 const videosDir = path.join(process.cwd(), 'public', 'videos');
@@ -19,13 +19,7 @@ const reels = videoFiles.map((file, i) => ({
 ---
 
 <section class="relative overflow-hidden bg-paper-deep/60 px-5 py-20 md:px-10 md:py-28">
-  <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-14 md:h-20"
-    style={`--torn: url(${paper3.src}); transform: scaleY(-1);`}
-    aria-hidden="true"
-  >
-    <div class="torn-mask h-full w-full bg-paper"></div>
-  </div>
+  <TornEdge position="top" fill="#eceae4" />
 
   <div class="relative z-10 mx-auto max-w-6xl">
     <div class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">

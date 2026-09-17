@@ -1,4 +1,6 @@
 ---
+import { media } from '../data/media';
+
 const services = [
   { text: 'Pomagam konsekwentnie budować', strong: 'marki osobiste' },
   { text: 'Wspieram przy kreowaniu', strong: 'identyfikacji wizualnych' },
@@ -11,41 +13,52 @@ const services = [
 ---
 
 <section id="uslugi" class="relative px-5 py-20 md:px-10 md:py-28">
-  <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16">
-    <div>
-      <p class="font-hand text-2xl text-accent">grafiki, rolki, słowa</p>
-      <h2 class="font-display mt-2 text-4xl font-extrabold tracking-tight text-ink md:text-5xl text-balance">
-        Czym się zajmuję?
-      </h2>
-      <p class="mt-5 max-w-md text-ink-soft leading-relaxed">
-        Od konceptu po publikację — pomagam, żeby Twoja marka brzmiała i wyglądała spójnie.
-      </p>
+  <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
+    <div class="mx-auto w-full max-w-sm lg:mx-0">
+      <div class="paper-shadow overflow-hidden rotate-[-2deg]">
+        <img
+          src={media.photos.wiki6}
+          alt="Portret Wiki w białej koszuli"
+          width="640"
+          height="853"
+          class="aspect-[3/4] w-full object-cover object-top"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
     </div>
 
-    <ul class="space-y-4">
-      {
-        services.map((item) => (
-          <li class="group flex gap-4 border-b border-ink/10 pb-4">
-            <span
-              class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent transition group-hover:scale-125"
-              aria-hidden="true"
-            />
-            <p class="text-lg leading-snug text-ink md:text-xl">
-              {item.text && <>{item.text}{' '}</>}
-              <strong class="font-semibold text-ink">{item.strong}</strong>
-              {item.text2 && <>{' '}{item.text2}</>}
-              {item.strong2 && (
-                <>
-                  {' '}
-                  <strong class="font-semibold text-ink">{item.strong2}</strong>
-                </>
-              )}
-              {item.text3 && <>{' '}{item.text3}</>}
-              .
-            </p>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="text-[#545454]">
+      <p class="font-hand text-2xl text-[#545454]">grafiki, rolki, słowa</p>
+      <h2 class="font-display mt-2 text-4xl font-extrabold tracking-tight text-[#545454] md:text-5xl text-balance">
+        Czym się zajmuję?
+      </h2>
+
+      <ul class="mt-8 space-y-0">
+        {
+          services.map((item) => (
+            <li class="flex items-start gap-3 py-1.5">
+              <span
+                class="mt-[0.35em] h-[1em] w-[1em] shrink-0 rounded-full bg-[#545454]"
+                aria-hidden="true"
+              />
+              <p class="text-lg leading-snug text-[#545454] md:text-xl">
+                {item.text && <>{item.text}{' '}</>}
+                <strong class="font-semibold text-[#545454]">{item.strong}</strong>
+                {item.text2 && <>{' '}{item.text2}</>}
+                {item.strong2 && (
+                  <>
+                    {' '}
+                    <strong class="font-semibold text-[#545454]">{item.strong2}</strong>
+                  </>
+                )}
+                {item.text3 && <>{' '}{item.text3}</>}
+                .
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
