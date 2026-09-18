@@ -1,42 +1,54 @@
 ---
-import tear1 from '../assets/paper/tear-edge-1.png';
-import tear2 from '../assets/paper/tear-edge-2.png';
+import torn1Top from '../assets/paper/torn-1-top.png';
+import torn1Bottom from '../assets/paper/torn-1-bottom.png';
+import torn2Top from '../assets/paper/torn-2-top.png';
+import torn2Bottom from '../assets/paper/torn-2-bottom.png';
+import torn3Top from '../assets/paper/torn-3-top.png';
+import torn3Bottom from '../assets/paper/torn-3-bottom.png';
 
 interface Props {
   position?: 'top' | 'bottom';
-  /** Color of the paper piece (usually the section BELOW/ABOVE that "covers") */
-  fill?: string;
+  /** Must match the section background-color */
+  fill: string;
+  variant?: 1 | 2 | 3;
   class?: string;
 }
-const { position = 'bottom', fill = '#eceae4', class: className = '' } = Astro.props;
-const tiles = [tear1, tear2, tear1, tear2];
+
+const { position = 'bottom', fill, variant = 1, class: className = '' } = Astro.props;
+
+const assets = {
+  1: { top: torn1Top, bottom: torn1Bottom },
+  2: { top: torn2Top, bottom: torn2Bottom },
+  3: { top: torn3Top, bottom: torn3Bottom },
+} as const;
+
+const src = assets[variant][position];
+/**
+ * Fixed height close to the native crop (~64px), same for top and bottom.
+ * calc(100vw) flattened the wave on narrow screens; clamp keeps the amplitude.
+ */
+const heightCss = `clamp(3.75rem, calc(100vw * ${src.height} / ${src.width}), 5rem)`;
 ---
 
 <div
   class:list={[
-    'pointer-events-none absolute inset-x-0 z-20 leading-[0]',
-    position === 'top' ? '-top-px' : '-bottom-px',
+    'pointer-events-none absolute inset-x-0 z-20',
+    // 50% outside the section — full torn zone visible against the adjacent background
+    // (at 30% most of the wave hid inside the section fill and looked flat)
+    position === 'top' ? 'top-0 -translate-y-1/2' : 'bottom-0 translate-y-1/2',
     className,
   ]}
-  style={position === 'top' ? 'transform: scaleY(-1)' : undefined}
+  style={`
+    height: ${heightCss};
+    background-color: ${fill};
+    -webkit-mask-image: url(${src.src});
+    mask-image: url(${src.src});
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-mode: alpha;
+    mask-mode: alpha;
+  `}
   aria-hidden="true"
->
-  <div class="flex w-full" style={`color: ${fill}`}>
-    {
-      tiles.map((src) => (
-        <div
-          class="h-[42px] w-1/4 md:h-[56px]"
-          style={`
-            background-color: ${fill};
-            -webkit-mask-image: url(${src.src});
-            mask-image: url(${src.src});
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-          `}
-        />
-      ))
-    }
-  </div>
-</div>
+/>

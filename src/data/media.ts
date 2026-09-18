@@ -28,6 +28,17 @@ export const media = {
     ctpGif: `${base}/ctp.gif`,
     ctp1Gif: `${base}/CTP1-ezgif.com-optimize.gif`,
   },
+  /** Canva props — local from public/elementy-graficzne (fresh files) */
+  props: {
+    notePaper: '/elementy-graficzne/t.png',
+    clip: '/elementy-graficzne/Strona_www_5.png',
+    polaroidEdit: '/elementy-graficzne/Strona_www_6.png',
+    polaroidLaptop: '/elementy-graficzne/Strona_www_7.png',
+    cvPreview: '/elementy-graficzne/Strona_www_8.png',
+    wikiSofa: '/elementy-graficzne/Strona_www_9.png',
+    servicesLeft: '/elementy-graficzne/Strona_www_10.png',
+    heroBg: '/elementy-graficzne/Strona_www_11.png',
+  },
   /** Set when PDF is uploaded as raw */
   cv: null as string | null,
 };

@@ -3,14 +3,18 @@ import TornEdge from './TornEdge.astro';
 import { media } from '../data/media';
 ---
 
-<section id="o-mnie" class="relative overflow-hidden bg-[#d9d9d9] px-5 py-28 text-ink md:px-10 md:py-36">
-  <TornEdge position="top" fill="#eceae4" />
+<section id="o-mnie" class="relative z-10 overflow-x-clip bg-[#d9d9d9] px-4 py-3 text-ink md:px-6 md:py-4">
+  <TornEdge position="top" fill="#d9d9d9" variant={1} />
 
-  <div class="relative z-10 mx-auto grid max-w-7xl gap-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-26">
+  <div
+    class="page-width relative z-10 grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10"
+  >
+    <!-- Text — same width scope as Strengths / Graphics / Reels -->
     <div>
-      
-      <h2 class="font-display mt-2 text-5xl font-extrabold tracking-tight text-ink md:text-8xl">O mnie</h2>
-<div class="mt-6 space-y-4 text-lg md:text-2xl leading-relaxed text-ink/85">
+      <h2 class="font-display mt-2 text-5xl font-extrabold tracking-tight text-ink md:text-8xl">
+        O mnie
+      </h2>
+      <div class="mt-6 space-y-4 text-lg leading-relaxed text-ink/85 md:text-2xl">
         <p>Mam na imię Wiktoria, mam 28 lat i mieszkam we Wrocławiu wraz z narzeczonym.</p>
         <p>
           Moje pomysły przelewam na fizyczny papier i elektroniczne strony odkąd skończyłam 10 lat.
@@ -28,20 +32,25 @@ import { media } from '../data/media';
       </div>
     </div>
 
-    <div class="mx-auto w-full max-w-sm lg:mx-0">
-      <div class="paper-shadow overflow-hidden rotate-[2deg] bg-cream p-3">
+    <!-- Photo on the right — stays in the column, no overflow -->
+    <div class="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
+      <div
+        class="paper-shadow relative bg-cream p-3"
+        style="transform: scale(0.75) rotate(2deg); transform-origin: center center;"
+      >
         <img
           src={media.photos.wiki5}
           alt="Wiki w czerwonej bluzce"
           width="640"
-          height="853"
-          class="aspect-[3/4] w-full object-cover"
+          height="753"
           loading="lazy"
           decoding="async"
+          class="aspect-[3/4] w-full object-cover"
+          style="box-shadow: -15px 15px 20px rgba(0,0,0,0.15);"
         />
       </div>
     </div>
   </div>
 
-  <TornEdge position="bottom" fill="#eceae4" />
+  <TornEdge position="bottom" fill="#d9d9d9" variant={1} />
 </section>

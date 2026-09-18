@@ -19,6 +19,13 @@
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+:root {
+  --paper-bg-image:
+    radial-gradient(ellipse 120% 80% at 10% -10%, rgb(255 255 255 / 0.55), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 20%, rgb(198 40 40 / 0.06), transparent 50%),
+    linear-gradient(180deg, var(--color-cream), var(--color-paper) 35%, var(--color-paper-deep));
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -28,10 +35,7 @@
     font-family: var(--font-body);
     color: var(--color-ink);
     background-color: var(--color-paper);
-    background-image:
-      radial-gradient(ellipse 120% 80% at 10% -10%, rgb(255 255 255 / 0.55), transparent 55%),
-      radial-gradient(ellipse 90% 60% at 100% 20%, rgb(198 40 40 / 0.06), transparent 50%),
-      linear-gradient(180deg, var(--color-cream), var(--color-paper) 35%, var(--color-paper-deep));
+    background-image: var(--paper-bg-image);
     background-attachment: fixed;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -69,6 +73,56 @@
     mask-repeat: no-repeat;
     -webkit-mask-mode: luminance;
     mask-mode: luminance;
+  }
+
+  .bg-paper-fixed {
+    background-color: var(--color-paper);
+    background-image: var(--paper-bg-image);
+    background-attachment: fixed;
+  }
+
+  /* Wide layout — content aligned across all sections */
+  .page-width {
+    width: 100%;
+    max-width: 96rem; /* ~1536px */
+    margin-inline: auto;
+  }
+
+  /* Soft contact shadow under Strengths pills — no graphic */
+  /* Contact shadow UNDER each Strengths tile (separate layer, not ::after with z-index:-1) */
+  .strength-shadow-blob {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: 0.15rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 0.92);
+    filter: blur(11px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Same contact shadow under CV (scale 0.6 → visual bottom edge ~20%) */
+  .cv-shadow-blob {
+    position: absolute;
+    top: 24%;
+    bottom: 24%;
+    width: 1.75rem;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 0.92);
+    filter: blur(12px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .cv-shadow-blob--left {
+    left: 14%;
+  }
+
+  .cv-shadow-blob--right {
+    right: 14%;
+    left: auto;
   }
 
   .paper-shadow {

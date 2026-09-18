@@ -1,7 +1,6 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import TornEdge from './TornEdge.astro';
 import { media } from '../data/media';
 
 const videosDir = path.join(process.cwd(), 'public', 'videos');
@@ -12,41 +11,30 @@ const videoFiles = fs.existsSync(videosDir)
       .sort()
   : [];
 
-const reels = videoFiles.map((file, i) => ({
-  title: `Montaż ${String(i + 1).padStart(2, '0')}`,
-  src: `/videos/${file}`,
-}));
+const SLOT_COUNT = 8; // 2 rows × 4
+
+const reels = Array.from({ length: SLOT_COUNT }, (_, i) => {
+  const file = videoFiles[i];
+  return {
+    title: `Montaż ${String(i + 1).padStart(2, '0')}`,
+    src: file ? `/videos/${file}` : null,
+  };
+});
 ---
 
-<section class="relative overflow-hidden bg-paper-deep/60 px-5 py-20 md:px-10 md:py-28">
-  <TornEdge position="top" fill="#eceae4" />
+<section class="relative px-4 pt-20 pb-3 md:px-6 md:pt-28 md:pb-6">
+  <div class="page-width relative z-10">
+    <h2 class="font-display text-9xl font-extrabold tracking-tight text-ink md:text-20xl text-balance">
+      Przykłady moich <br />montaży
+    </h2>
 
-  <div class="relative z-10 mx-auto max-w-6xl">
-    <div class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-      <div>
-        <p class="font-hand text-2xl text-accent">ruch i montaż</p>
-        <h2 class="font-display mt-1 text-4xl font-extrabold tracking-tight text-ink md:text-5xl text-balance">
-          Przykłady moich montaży
-        </h2>
-
-        <blockquote class="mt-8 border-l-4 border-accent pl-5">
-          <p class="font-display text-2xl font-bold leading-snug text-ink md:text-3xl text-balance">
-            „Ale ja nie umiem gadać do kamery”.
-          </p>
-          <p class="mt-4 text-ink-soft leading-relaxed">
-            Umiesz. Większość osób, z jakimi pracuję, ma z tym spory problem. Ja jestem od tego, by
-            nauczyć Cię swobody. Gwarantuję atmosferę, która pozwoli Ci się otworzyć i nagrać, co
-            tylko chcesz :)
-          </p>
-        </blockquote>
-      </div>
-
+    <div class="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
       {
-        reels.length > 0 ? (
-          <div class="grid gap-5 sm:grid-cols-2">
-            {reels.map((reel) => (
-              <figure class="paper-shadow overflow-hidden bg-ink">
-                <div class="relative aspect-[9/16] bg-ink">
+        reels.map((reel) => (
+          <figure class="paper-shadow overflow-hidden bg-ink">
+            <div class="relative aspect-[9/16] bg-ink">
+              {reel.src ? (
+                <>
                   <video
                     class="absolute inset-0 h-full w-full object-cover"
                     controls
@@ -56,35 +44,36 @@ const reels = videoFiles.map((file, i) => ({
                   >
                     <source src={reel.src} type="video/mp4" />
                   </video>
-                  <figcaption class="pointer-events-none absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/80 to-transparent p-4 text-sm text-cream">
+                  <figcaption class="pointer-events-none absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/80 to-transparent p-3 text-xs text-cream md:p-4 md:text-sm">
                     {reel.title}
                   </figcaption>
+                </>
+              ) : (
+                <div
+                  class="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-ink/90 px-3 text-center"
+                  aria-label={`Placeholder ${reel.title}`}
+                >
+                  <span class="font-display text-sm font-bold text-cream/70">{reel.title}</span>
+                  <span class="text-[0.7rem] leading-snug text-cream/40">
+                    Wrzuć .mp4 do public/videos/
+                  </span>
                 </div>
-              </figure>
-            ))}
-          </div>
-        ) : (
-          <div class="relative paper-shadow overflow-hidden">
-            <img
-              src={media.photos.wiki2}
-              alt="Kadry z pracy z kamerą"
-              width="960"
-              height="1200"
-              class="aspect-[4/5] w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-ink/45"></div>
-            <div class="absolute inset-0 flex flex-col items-start justify-end p-6 text-cream md:p-8">
-              <p class="font-display text-2xl font-bold md:text-3xl">Wkrótce tu wpadną rolki</p>
-              <p class="mt-2 max-w-sm text-sm text-cream/80">
-                Wrzuć pliki <code class="font-mono text-cream">.mp4</code> do folderu{' '}
-                <code class="font-mono text-cream">public/videos/</code> — pojawią się automatycznie.
-              </p>
+              )}
             </div>
-          </div>
-        )
+          </figure>
+        ))
       }
     </div>
+
+    <blockquote class="mt-10 w-full">
+      <p class="font-display text-3xl font-bold leading-snug text-ink md:text-5xl text-balance">
+        „Ale ja nie umiem gadać do kamery”.
+      </p>
+      <p class="mt-5 w-full text-xl leading-relaxed text-ink-soft md:text-2xl">
+        <strong class="font-bold text-ink">Umiesz.</strong> Większość osób, z jakimi pracuję, ma z
+        tym spory problem. Ja jestem od tego, by nauczyć Cię swobody. Gwarantuję atmosferę, która
+        pozwoli Ci się otworzyć i nagrać, co tylko chcesz :)
+      </p>
+    </blockquote>
   </div>
 </section>
