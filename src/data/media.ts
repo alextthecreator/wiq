@@ -14,7 +14,8 @@ export const media = {
     wiki1: `${base}/wiki-1.jpg`,
     wiki2: `${base}/wiki-2.jpg`,
     wiki3: `${base}/wiki-3.jpg`,
-    wiki4: `${base}/wiki-4.jpg`,
+    // Version pin: bare wiki-4.jpg is stuck on a CDN-cached 404 after overwrite.
+    wiki4: `${base}/f_auto,q_auto/v1789713082/wiki-4.jpg`,
     wiki5: `${base}/wiki-5.jpg`,
     wiki6: `${base}/wiki-6.jpg`,
   },
