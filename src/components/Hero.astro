@@ -8,19 +8,23 @@ const HERO_W = 1366;
 const HERO_H = 1159;
 const CROP_TOP = 0.4;
 const visibleH = HERO_H * (1 - CROP_TOP);
+/** Desktop section height */
+const SECTION_H = visibleH * 1.2;
+/** Mobile: taller section = more empty space above the photo (photo keeps natural size) */
+const SECTION_H_MOBILE = visibleH * 1.85;
 ---
 
-<section id="top" class="relative overflow-hidden px-4 pt-28 md:px-6 md:pt-32">
+<section id="top" class="relative overflow-hidden">
   <div
-    class="relative z-0 w-full overflow-hidden"
-    style={`aspect-ratio: ${HERO_W} / ${visibleH};`}
+    class="hero-bg relative z-0 w-full overflow-hidden"
+    style={`--hero-ar-mobile: ${HERO_W} / ${SECTION_H_MOBILE}; --hero-ar-desktop: ${HERO_W} / ${SECTION_H}; --hero-img-ar: ${HERO_W} / ${visibleH};`}
   >
     <img
       src={media.props.heroBg}
       alt=""
       width={HERO_W}
       height={HERO_H}
-      class="pointer-events-none absolute inset-x-0 bottom-0 w-full max-w-none"
+      class="hero-bg-img pointer-events-none absolute inset-x-0 bottom-0 w-full max-w-none object-cover object-bottom"
       fetchpriority="high"
       decoding="async"
       aria-hidden="true"
@@ -29,7 +33,7 @@ const visibleH = HERO_H * (1 - CROP_TOP);
 
   <a
     href="#top"
-    class="reveal group absolute top-6 right-8 z-20 inline-flex md:top-8 md:right-16"
+    class="reveal group absolute top-2 right-1 z-20 inline-flex md:top-6 md:right-6 lg:top-8 lg:right-16"
     aria-label="CO TU PISZE — strona główna"
   >
     <Image
@@ -37,15 +41,15 @@ const visibleH = HERO_H * (1 - CROP_TOP);
       alt="CO TU PISZE"
       width={352}
       height={352}
-      class="h-56 w-56 object-contain drop-shadow-md transition duration-500 group-hover:rotate-[-4deg] md:h-62 md:w-62"
+      class="h-28 w-28 object-contain drop-shadow-md transition duration-500 group-hover:rotate-[-4deg] md:h-40 md:w-40 lg:h-62 lg:w-62"
       densities={[1, 2]}
     />
   </a>
 
-  <div class="page-width absolute inset-x-0 top-0 z-10 px-4 pt-28 md:px-6 md:pt-32">
+  <div class="page-width absolute inset-x-0 top-0 z-10 px-4 pt-16 md:px-6 md:pt-24 lg:pt-32">
     <div class="relative z-10 flex max-w-xl flex-col items-stretch">
       <h1
-        class="reveal text-[#848484] font-display flex w-max max-w-full flex-col items-start text-[clamp(4.8rem,12vw,10.6rem)] leading-[0.95] font-extrabold tracking-tight"
+        class="reveal text-[#848484] font-display flex w-max max-w-full flex-col items-start text-[clamp(2.75rem,12vw,10.6rem)] leading-[0.95] font-extrabold tracking-tight"
       >
         Hejka!
         <span class="ml-[0.22em]">Jestem</span>
@@ -54,3 +58,26 @@ const visibleH = HERO_H * (1 - CROP_TOP);
     </div>
   </div>
 </section>
+
+<style>
+  .hero-bg {
+    aspect-ratio: var(--hero-ar-mobile);
+  }
+
+  /* Natural photo height — sits at bottom; empty space above is section padding */
+  .hero-bg-img {
+    aspect-ratio: var(--hero-img-ar);
+    height: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-bg {
+      aspect-ratio: var(--hero-ar-desktop);
+    }
+
+    .hero-bg-img {
+      aspect-ratio: auto;
+      height: 114%;
+    }
+  }
+</style>

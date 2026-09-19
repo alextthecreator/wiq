@@ -13,7 +13,7 @@ const sources = [
   { src: media.graphics.ctp1Gif, alt: 'Animacja — Canna Vitis' },
 ];
 
-const SLOT_COUNT = 15; // 5 rows × 3
+const SLOT_COUNT = 15; // 5 rows × 3 (desktop); 2 cols on small screens
 
 const works = Array.from({ length: SLOT_COUNT }, (_, i) => ({
   ...(sources[i] ?? { src: null as string | null, alt: `Grafika ${i + 1}` }),
@@ -24,16 +24,19 @@ const works = Array.from({ length: SLOT_COUNT }, (_, i) => ({
 
 <section id="portfolio" class="px-4 py-20 md:px-6 md:py-28">
   <div class="page-width text-wrap">
-    <h2 class="font-display pr-60 text-9xl font-extrabold tracking-tight text-ink text-balance md:text-20xl">
+    <h2 class="font-display pr-0 text-4xl font-extrabold tracking-tight text-ink text-balance md:text-6xl lg:pr-60 lg:text-9xl">
       Przykłady moich
       <br />grafik
     </h2>
 
-    <div class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+    <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 lg:gap-6">
       {
         works.map((work) => (
           <figure
-            class="paper-shadow overflow-hidden bg-cream p-2 transition duration-500 hover:-translate-y-1"
+            class:list={[
+              'paper-shadow overflow-hidden bg-cream p-2 transition duration-500 hover:-translate-y-1',
+              work.index === 15 && 'hidden md:block',
+            ]}
             style={`transform: rotate(${work.rotate}deg)`}
           >
             {work.src ? (

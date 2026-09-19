@@ -3,11 +3,11 @@ import TornEdge from './TornEdge.astro';
 import { media } from '../data/media';
 ---
 
-<section id="o-mnie" class="relative z-10 overflow-x-clip bg-[#d9d9d9] px-4 py-3 text-ink md:px-6 md:py-4">
+<section id="o-mnie" class="relative z-10 overflow-x-clip bg-[#d9d9d9] px-4 py-12 text-ink md:px-6 md:py-14 lg:py-4">
   <TornEdge position="top" fill="#d9d9d9" variant={1} />
 
   <div
-    class="page-width relative z-10 grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10"
+    class="page-width relative z-10 grid items-center gap-10 py-4 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:py-0"
   >
     <!-- Text — same width scope as Strengths / Graphics / Reels -->
     <div>
@@ -32,11 +32,10 @@ import { media } from '../data/media';
       </div>
     </div>
 
-    <!-- Photo on the right — stays in the column, no overflow -->
-    <div class="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
+    <!-- Photo — desktop only -->
+    <div class="relative mx-auto hidden w-full max-w-sm lg:mx-0 lg:block lg:max-w-none">
       <div
-        class="paper-shadow relative bg-cream p-3"
-        style="transform: scale(0.75) rotate(2deg); transform-origin: center center;"
+        class="paper-shadow relative origin-center scale-90 rotate-[2deg] bg-cream p-3 lg:scale-75"
       >
         <img
           src={media.photos.wiki5}
